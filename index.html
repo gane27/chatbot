@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bain & Company </title> 
+    <!-- This styling is for the Web Chat demonstration purposes. It is recommended that style is moved to separate file for organization in larger projects -->
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 16px;
+            font-family: Segoe UI;
+            line-height: 20px;
+            color: whitesmoke;
+            display: inline-block;
+			padding: 0px 3px 0px 10px;
+			float: left;
+        }
+
+        #heading {
+            background-color:#DA1800;
+            height: 50px;			
+        }
+		
+		#heading img {
+		float: left;
+		padding-top: 10px;
+		}
+		
+		
+
+        .main {
+            margin: 3px;
+            border-radius: 2px;
+            
+        }
+
+        div[role="form"]{
+            background-color:#EBF5FB ;
+        }
+
+        #webchat {
+            position: fixed;
+            height: calc(100% - 50px);
+            width: 100%;
+            top: 50px;
+            overflow: hidden;
+			
+        }
+        
+		
+		 
+		 
+    </style>
+
+</head>
+<body>
+    <div>
+	  <div id="heading">
+         <!-- Change the h1 text to change the bot name -->
+         <h1>Bain & Company </h1>
+		 <img src="logo.png">
+    </div>
+       
+        <div id="webchat" role="main"></div>
+    </div>    
+
+  <script src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
+
+  <script>
+        const styleOptions = {
+        
+ botAvatarImage: 'bot.png', 
+ userAvatarImage: 'human.png',
+ 
+  
+ 
+ // Bubble
+  // TODO: Should we make a bubbleFromBot*
+  bubbleBackground: '#A9CCE3',
+  bubbleBorderColor: '#E6E6E6',
+  bubbleBorderRadius: 2,
+  bubbleBorderStyle: 'solid',
+  bubbleBorderWidth: 1,
+  bubbleFromUserBackground: 'White',
+  bubbleFromUserBorderColor: '#E6E6E6',
+  bubbleFromUserBorderRadius: 2,
+  bubbleFromUserBorderStyle: 'solid',
+  bubbleFromUserBorderWidth: 1,
+  bubbleFromUserNubOffset: 'bottom',
+  bubbleFromUserNubSize: 0,
+  bubbleFromUserTextColor: 'Black',
+  bubbleImageHeight: 240,
+  bubbleMaxWidth: 480, // screen width = 600px
+  bubbleMinHeight: 40,
+  bubbleMinWidth: 250, // min screen width = 300px, Edge requires 372px (https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/13621468/)
+  bubbleNubOffset: 'bottom',
+  bubbleNubSize: 0,
+  bubbleTextColor: 'Black',
+  
+   // user background color
+   bubbleFromUserBackground: '#EB984E ',
+  
+  sendBoxBackground: 'F8F9F9 ',  
+  sendBoxBorderTop: 'solid 1px #E6E6E6',
+  suggestedActionBackground: 'yellow',
+  
+  sendBoxButtonColorOnFocus: '#333',
+  sendBoxButtonColorOnHover: '#EAFAF1',
+  sendBoxHeight: 40,
+  sendBoxMaxHeight: 200,
+  sendBoxTextColor: 'Black',
+  sendBoxPlaceholderColor:'#17202A',
+  
+  backgroundColor: 'White',
+  cardEmphasisBackgroundColor: '#F0F0F0',
+ 
+           // Add styleOptions to customize Web Chat canvas
+           hideUploadButton: true
+        };
+
+        // Add your BOT ID below 
+        var BOT_ID = "3a57d237-620d-46ce-b6d7-6d6e69710200"; 
+        var theURL = "https://powerva.microsoft.com/api/botmanagement/v1/directline/directlinetoken?botId=" + BOT_ID;
+
+      fetch(theURL)
+            .then(response => response.json())
+            .then(conversationInfo => {
+                window.WebChat.renderWebChat(
+                    {
+                        directLine: window.WebChat.createDirectLine({
+                            token: conversationInfo.token,
+                        }),
+                        styleOptions
+                    },
+                    document.getElementById('webchat')
+                );
+            })
+            .catch(err => console.error("An error occurred: " + err));
+
+    </script>
+  </body>
+</html>

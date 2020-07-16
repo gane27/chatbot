@@ -1,0 +1,6 @@
+https://github.com/Microsoft/BotFramework-WebChat/blob/master/packages/component/src/Styles/defaultStyleOptions.js
+https://github.com/microsoft/PowerVirtualAgentsSamples/tree/master/BuildYourOwnCanvasSamples/2.location-and-file-uploading
+https://github.com/microsoft/BotFramework-WebChat/#samples-list
+
+https://docs.microsoft.com/en-us/power-virtual-agents/customize-default-canvas
+https://docs.microsoft.com/en-us/power-virtual-agents/customize-default-canvas#customize-and-host-your-chat-canvas-advanced
